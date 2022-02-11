@@ -126,14 +126,18 @@ public class FrmDrawing extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				if(tglbtnDelete.isSelected()) {
 					//JOptionPane.showConfirmDialog(null, "Potvrda");
-					for(int i = pnl.getShapes().size()-1; i>=0; i--) {
-						if(pnl.getShapes().get(i).isSelected() == true) {
-							pnl.getShapes().remove(i);
-							repaint();
-							break;
+					int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Remove this object?","Warning",JOptionPane.YES_NO_CANCEL_OPTION);
+					if(dialogResult == JOptionPane.YES_OPTION){
+						for(int i = pnl.getShapes().size()-1; i>=0; i--) {
+							if(pnl.getShapes().get(i).isSelected() == true) {
+								pnl.getShapes().remove(i);
+								repaint();
+								break;
+							}
+							
 						}
-						
 					}
+					
 					
 					
 				
@@ -162,19 +166,12 @@ public class FrmDrawing extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(tglbtnModify.isSelected()) {
-					
-					
-					
-					
+																		
 					
 					for(int i = pnl.getShapes().size()-1; i>=0; i--) {
 						if(pnl.getShapes().get(i).isSelected() == true) {
-							list = pnl.getShapes();
-							list.get(i).toString();
-							System.out.println(list.get(i).toString());
-							
-							
-							 
+											
+														 
 								DlgCircle dlg = new DlgCircle();
 								dlg.setVisible(true);
 								if(dlg.isCancel() == false) {
@@ -186,11 +183,8 @@ public class FrmDrawing extends JFrame {
 									temp.setColor(btnColor.getBackground());
 									pnl.getShapes().add(temp);
 									repaint();
-									
-							
-							
-								
-							
+																				
+															
 							
 						}
 						
