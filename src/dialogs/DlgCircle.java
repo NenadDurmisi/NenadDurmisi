@@ -130,7 +130,7 @@ public class DlgCircle extends JDialog {
 					public void actionPerformed(ActionEvent Arg0) {
 						try {
 							Integer.parseInt(textFieldRadius.getText());
-							System.out.println(Integer.parseInt(textFieldRadius.getText()));
+							
 							dispose();
 						} catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Radius have to be number", "Blank text fields", JOptionPane.ERROR_MESSAGE);

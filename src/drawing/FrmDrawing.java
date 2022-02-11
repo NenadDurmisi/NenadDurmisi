@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +21,7 @@ import dialogs.DlgCircle;
 import dialogs.DlgDonut;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
@@ -48,7 +50,9 @@ public class FrmDrawing extends JFrame {
 	private ButtonGroup actionsGroup = new ButtonGroup();
 	private Point startPoint;
 	private boolean check;
-
+	private String a;
+	private DefaultListModel<Shape> dlm = new DefaultListModel<Shape>();
+	private ArrayList<Shape> list = new ArrayList<Shape>();
 	/**
 	 * Launch the application.
 	 */
@@ -116,11 +120,11 @@ public class FrmDrawing extends JFrame {
 		gbc_tglbtnSelect.gridy = 0;
 		panelActions.add(tglbtnSelect, gbc_tglbtnSelect);
 		
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("Delete");
-		tglbtnNewToggleButton.addMouseListener(new MouseAdapter() {
+		JToggleButton tglbtnDelete = new JToggleButton("Delete");
+		tglbtnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if(tglbtnNewToggleButton.isSelected()) {
+				if(tglbtnDelete.isSelected()) {
 					//JOptionPane.showConfirmDialog(null, "Potvrda");
 					for(int i = pnl.getShapes().size()-1; i>=0; i--) {
 						if(pnl.getShapes().get(i).isSelected() == true) {
@@ -144,13 +148,66 @@ public class FrmDrawing extends JFrame {
 				
 			}
 		});
-		actionsGroup.add(tglbtnNewToggleButton);
-		tglbtnNewToggleButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		GridBagConstraints gbc_tglbtnNewToggleButton = new GridBagConstraints();
-		gbc_tglbtnNewToggleButton.insets = new Insets(0, 0, 0, 5);
-		gbc_tglbtnNewToggleButton.gridx = 9;
-		gbc_tglbtnNewToggleButton.gridy = 0;
-		panelActions.add(tglbtnNewToggleButton, gbc_tglbtnNewToggleButton);
+		actionsGroup.add(tglbtnDelete);
+		tglbtnDelete.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		GridBagConstraints gbc_tglbtnDelete = new GridBagConstraints();
+		gbc_tglbtnDelete.insets = new Insets(0, 0, 0, 5);
+		gbc_tglbtnDelete.gridx = 9;
+		gbc_tglbtnDelete.gridy = 0;
+		panelActions.add(tglbtnDelete, gbc_tglbtnDelete);
+		
+		JButton btnColor = new JButton("");
+		JToggleButton tglbtnModify = new JToggleButton("Modify");
+		tglbtnModify.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if(tglbtnModify.isSelected()) {
+					
+					
+					
+					
+					
+					for(int i = pnl.getShapes().size()-1; i>=0; i--) {
+						if(pnl.getShapes().get(i).isSelected() == true) {
+							list = pnl.getShapes();
+							list.get(i).toString();
+							System.out.println(list.get(i).toString());
+							
+							
+							 
+								DlgCircle dlg = new DlgCircle();
+								dlg.setVisible(true);
+								if(dlg.isCancel() == false) {
+									
+									pnl.getShapes().remove(i);
+									Point Center = new Point(0,0);
+									int Radius = Integer.parseInt(dlg.getTextFieldRadius().getText());
+									Circle temp = new Circle(Center,Radius);
+									temp.setColor(btnColor.getBackground());
+									pnl.getShapes().add(temp);
+									repaint();
+									
+							
+							
+								
+							
+							
+						}
+						
+					}
+					
+					
+				}
+				
+			}
+			}
+		});
+		actionsGroup.add(tglbtnModify);
+		tglbtnModify.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		GridBagConstraints gbc_tglbtnModify = new GridBagConstraints();
+		gbc_tglbtnModify.gridx = 10;
+		gbc_tglbtnModify.gridy = 0;
+		panelActions.add(tglbtnModify, gbc_tglbtnModify);
 		
 		JPanel panelShapes = new JPanel();
 		contentPane.add(panelShapes, BorderLayout.WEST);
@@ -220,7 +277,7 @@ public class FrmDrawing extends JFrame {
 		panelShapes.add(tglDonut, gbc_tglDonut);
 		shapesGroup.add(tglDonut);
 		
-		JButton btnColor = new JButton("");
+		
 		btnColor.setBackground(Color.WHITE);
 		btnColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

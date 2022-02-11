@@ -37,12 +37,12 @@ public class Donut extends Circle {
 		//g.fillOval(center.getX()-radius, center.getY()-radius, radius*2, radius*2);
 		
 		 
-			if(super.isSelected()) {
-				g.drawRect(this.getCenter().getX() - this.innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
-			    g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + this.innerRadius - 3, 6, 6);
-			    g.drawRect(this.getCenter().getX() + this.innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
-			    g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - this.innerRadius - 3, 6, 6);
-			}
+		if(super.isSelected()) {
+			g.drawRect(this.getCenter().getX() - this.innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
+		    g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + this.innerRadius - 3, 6, 6);
+		    g.drawRect(this.getCenter().getX() + this.innerRadius - 3, this.getCenter().getY() - 3, 6, 6);
+		    g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - this.innerRadius - 3, 6, 6);
+		}
 		    
 	       // g.drawRect(this.getCenter().getX() - this.radius - 3, this.getCenter().getY() - 3, 6, 6);
 	       // g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + this.radius - 3, 6, 6);
