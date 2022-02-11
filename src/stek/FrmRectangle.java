@@ -105,7 +105,11 @@ public class FrmRectangle extends JFrame {
 							dlg.getTextFieldx().setEditable(false);
 							dlg.getTextFieldy().setEditable(false);
 						dlg.setVisible(true);
-						dlm.remove(0);
+						if(!dlg.isCancel() == true) {
+							dlm.remove(0);
+						}
+						
+						
 						
 						
 					}
